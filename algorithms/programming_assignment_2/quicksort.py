@@ -38,6 +38,31 @@ without any space / commas / other punctuation marks. You have 5 attempts to get
 language of your choice, just type the numeric answer in the following space.)
 
 """
+def partition_array(arr, start, end):
+    print ("partition array")
+    pivot = arr[start]
+    i = start + 1
+    j = start + 1
+    while (j <= end):
+        if (arr[j] < pivot):
+            tmp = arr[j]
+            arr[j] = arr[i]
+            arr[i] = tmp
+            i+=1
+        j+=1
+    # swap arr[start] and arr[i-1]
+    tmp = arr[start]
+    arr[start] = arr[i-1]
+    arr[i-1] = tmp
+    print(arr)
+
+def quicksort(arr):
+    if (len(arr) == 1):
+        return
+    else:
+        print ("quicksort")
+        partition_array(arr, 0, len(arr) - 1)
+
 def loadData(arr):
     """Load data from input file """
     f = open("QuickSort.txt","r")
@@ -51,8 +76,8 @@ def main():
     loadData(arr)
 
     """Print sorted array """
-    for i in arr:
-        print(i)
+    print (arr)
+    quicksort(arr)
 
 if __name__ == "__main__":
     main()
