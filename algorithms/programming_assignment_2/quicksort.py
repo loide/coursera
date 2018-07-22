@@ -39,7 +39,6 @@ language of your choice, just type the numeric answer in the following space.)
 
 """
 def partition_array(arr, start, end):
-    print ("partition array")
     pivot = arr[start]
     i = start + 1
     j = start + 1
@@ -54,14 +53,19 @@ def partition_array(arr, start, end):
     tmp = arr[start]
     arr[start] = arr[i-1]
     arr[i-1] = tmp
-    print(arr)
+    return i-1
 
 def quicksort(arr):
     if (len(arr) == 1):
         return
     else:
-        print ("quicksort")
-        partition_array(arr, 0, len(arr) - 1)
+        return iterative_quicksort(arr, 0, len(arr) - 1)
+
+def iterative_quicksort(arr, start, end):
+    if (start < end):
+        pivot_point = partition_array(arr, start, end)
+        iterative_quicksort(arr, start, pivot_point - 1)
+        iterative_quicksort(arr, pivot_point + 1, end)
 
 def loadData(arr):
     """Load data from input file """
@@ -75,9 +79,11 @@ def main():
     arr = []
     loadData(arr)
 
-    """Print sorted array """
-    print (arr)
+    #"""Print unsorted array """
+    #print (arr)
     quicksort(arr)
+    """"Print sorted array"""
+    print(arr)
 
 if __name__ == "__main__":
     main()
