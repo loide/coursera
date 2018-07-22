@@ -42,6 +42,7 @@ def partition_array(arr, start, end):
     pivot = arr[start]
     i = start + 1
     j = start + 1
+    comparisons = end - start
     while (j <= end):
         if (arr[j] < pivot):
             tmp = arr[j]
@@ -53,7 +54,7 @@ def partition_array(arr, start, end):
     tmp = arr[start]
     arr[start] = arr[i-1]
     arr[i-1] = tmp
-    return i-1
+    return i-1, comparisons
 
 def quicksort(arr):
     if (len(arr) == 1):
@@ -62,10 +63,12 @@ def quicksort(arr):
         return iterative_quicksort(arr, 0, len(arr) - 1)
 
 def iterative_quicksort(arr, start, end):
+    n_comparisons = 0
     if (start < end):
-        pivot_point = partition_array(arr, start, end)
-        iterative_quicksort(arr, start, pivot_point - 1)
-        iterative_quicksort(arr, pivot_point + 1, end)
+        pivot_point, n_comparisons = partition_array(arr, start, end)
+        n_comparisons = n_comparisons + iterative_quicksort(arr, start, pivot_point - 1)
+        n_comparisons = n_comparisons + iterative_quicksort(arr, pivot_point + 1, end)
+    return n_comparisons
 
 def loadData(arr):
     """Load data from input file """
@@ -81,9 +84,10 @@ def main():
 
     #"""Print unsorted array """
     #print (arr)
-    quicksort(arr)
-    """"Print sorted array"""
-    print(arr)
+    c = quicksort(arr)
+    print (c)
+    #""""Print sorted array"""
+    #print(arr)
 
 if __name__ == "__main__":
     main()
