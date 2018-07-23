@@ -56,18 +56,18 @@ def partition_array(arr, start, end):
     arr[i-1] = tmp
     return i-1, comparisons
 
-def quicksort(arr):
+def sort(arr):
     if (len(arr) == 1):
         return
     else:
-        return iterative_quicksort(arr, 0, len(arr) - 1)
+        return quicksort(arr, 0, len(arr) - 1)
 
-def iterative_quicksort(arr, start, end):
+def quicksort(arr, start, end):
     n_comparisons = 0
     if (start < end):
         pivot_point, n_comparisons = partition_array(arr, start, end)
-        n_comparisons = n_comparisons + iterative_quicksort(arr, start, pivot_point - 1)
-        n_comparisons = n_comparisons + iterative_quicksort(arr, pivot_point + 1, end)
+        n_comparisons += quicksort(arr, start, pivot_point - 1)
+        n_comparisons += quicksort(arr, pivot_point + 1, end)
     return n_comparisons
 
 def loadData(arr):
@@ -84,7 +84,7 @@ def main():
 
     #"""Print unsorted array """
     #print (arr)
-    c = quicksort(arr)
+    c = sort(arr)
     print (c)
     #""""Print sorted array"""
     #print(arr)
