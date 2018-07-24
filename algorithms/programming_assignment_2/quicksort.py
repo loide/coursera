@@ -51,9 +51,8 @@ def partition_array(arr, start, end):
             i+=1
         j+=1
     # swap arr[start] and arr[i-1]
-    tmp = arr[start]
     arr[start] = arr[i-1]
-    arr[i-1] = tmp
+    arr[i-1] = pivot
     return i-1, comparisons
 
 def sort(arr):
