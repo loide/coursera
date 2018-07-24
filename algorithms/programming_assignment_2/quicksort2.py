@@ -15,7 +15,7 @@ switches the last element to the first position and then the partition ensues.
 This is how this algorithm is given in popular algorithm texts.
 """
 def partition_array(arr, start, end):
-    #swipe first and last element
+    #switches first and last element
     tmp = arr[start]
     arr[start] = arr[end]
     arr[end] = tmp
